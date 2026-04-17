@@ -1,0 +1,25 @@
+{
+  "name": "jarvis-whatsapp-bot",
+  "version": "2.0.0",
+  "description": "Jarvis - AI Bot WhatsApp menggunakan ChatGPT API dengan Whiskeysockets/Baileys Library",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop jarvis-bot",
+    "pm2:restart": "pm2 restart jarvis-bot",
+    "pm2:logs": "pm2 logs jarvis-bot",
+    "pm2:status": "pm2 status",
+    "pm2:delete": "pm2 delete jarvis-bot",
+    "pm2:startup": "pm2 startup && pm2 save"
+  },
+  "dependencies": {
+    "baileys": "^7.0.0-rc.9",
+    "openai": "^4.0.0",
+    "pm2": "^6.0.14",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "author": "Nusanet",
+  "license": "ISC"
+}

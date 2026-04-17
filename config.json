@@ -1,0 +1,26 @@
+{
+  "openai": {
+    "apiKey": "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",
+    "model": "gpt-3.5-turbo",
+    "maxTokens": 200,
+    "temperature": 0.7
+  },
+  "bot": {
+    "name": "Jarvis",
+    "owner": "Alwis",
+    "ownerPhone": "082166508268",
+    "maxHistoryPerChat": 20,
+    "typingDelay": 1000,
+    "responseTimeout": 30000
+  },
+  "rateLimit": {
+    "enabled": true,
+    "messagesPerMinute": 30,
+    "dailyLimit": 500
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "saveToFile": true
+  }
+}

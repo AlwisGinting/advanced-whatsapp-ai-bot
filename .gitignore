@@ -1,0 +1,17 @@
+node_modules/
+.env
+.wwebjs_auth/
+.wwebjs_cache/
+auth_info_baileys/
+bot.log
+*.log
+logs/
+conversation_history.json
+user_stats.json
+.DS_Store
+.vscode/
+.idea/
+dist/
+build/
+package-lock.json
+yarn.lock
