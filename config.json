@@ -1,17 +1,87 @@
 {
+  "mode": "lightweight",
   "openai": {
     "apiKey": "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",
     "model": "gpt-3.5-turbo",
-    "maxTokens": 200,
-    "temperature": 0.7
+    "maxTokens": 100,
+    "maxTokensAI": 140,
+    "temperature": 0.7,
+    "aiDetectionKeywords": ["saya adalah ai", "saya bot", "i am ai", "i'm an ai", "saya asisten virtual", "saya chatbot", "sebagai ai", "as an ai", "bot milik", "dibuat oleh", "created by", "i'm powered", "my name is"]
   },
   "bot": {
     "name": "Jarvis",
     "owner": "Alwis",
-    "ownerPhone": "082166508268",
+    "ownerPhone": "6288807239376",
     "maxHistoryPerChat": 20,
     "typingDelay": 1000,
     "responseTimeout": 30000
+  },
+  "security": {
+    "superAdminPhone": "6288807239376",
+    "enableApprovalWorkflow": true,
+    "approvalTimeout": 300000,
+    "logAllAccess": true,
+    "enableSystemCommands": true,
+    "enableFileOperations": true,
+    "requireConfirmationForSensitiveOps": true,
+    "authMethod": "manual-whatsapp-web",
+    "authStrategy": "LocalAuth"
+  },
+  "roles": {
+    "SUPER_ADMIN": {
+      "priority": 1000,
+      "permissions": [
+        "read_data",
+        "write_data",
+        "delete_data",
+        "manage_users",
+        "manage_settings",
+        "execute_system_commands",
+        "create_files",
+        "delete_files",
+        "view_all_history",
+        "view_confidential",
+        "approve_requests",
+        "manage_roles"
+      ]
+    },
+    "ADMIN": {
+      "priority": 500,
+      "permissions": [
+        "read_data",
+        "write_data",
+        "delete_data",
+        "execute_system_commands",
+        "create_files",
+        "view_all_history",
+        "view_confidential"
+      ]
+    },
+    "TRUSTED_USER": {
+      "priority": 100,
+      "permissions": [
+        "read_data",
+        "write_data",
+        "view_history"
+      ]
+    },
+    "USER": {
+      "priority": 10,
+      "permissions": [
+        "read_data",
+        "view_own_history"
+      ]
+    },
+    "GUEST": {
+      "priority": 1,
+      "permissions": [
+        "limited_read"
+      ]
+    }
+  },
+  "dataProtection": {
+    "confidentialFields": ["password", "token", "secret", "apiKey", "privateKey", "credentials"],
+    "protectedOperations": ["delete_data", "manage_users", "view_confidential", "execute_system_commands"]
   },
   "rateLimit": {
     "enabled": true,
@@ -21,6 +91,98 @@
   "logging": {
     "level": "info",
     "format": "json",
-    "saveToFile": true
+    "saveToFile": true,
+    "enableSecurityLog": true
+  },
+  "features": {
+    "enhancedHistory": true,
+    "dateBasedSearch": true,
+    "fullTextSearch": true,
+    "contentIndexing": true,
+    "autoBackup": true,
+    "backupInterval": 3600000
+  },
+  "optimization": {
+    "aiOptimizer": {
+      "enabled": true,
+      "cacheTTL": 900000,
+      "maxCacheSize": 1000,
+      "tokenEstimationFactor": 4.5,
+      "qualityScoringEnabled": true,
+      "metricsTracking": true
+    },
+    "messageQueue": {
+      "enabled": true,
+      "maxConcurrentRequests": 5,
+      "maxQueueSize": 1000,
+      "maxRetries": 3,
+      "retryDelays": [1000, 2000, 4000],
+      "priorityBands": {
+        "high": [7, 10],
+        "normal": [4, 6],
+        "low": [1, 3]
+      }
+    },
+    "sentimentAnalyzer": {
+      "enabled": true,
+      "analyzeOnEveryMessage": true,
+      "adaptivePrompts": true,
+      "emotionalKeywordsEnabled": true,
+      "intentDetectionEnabled": true,
+      "storeHistory": true
+    },
+    "reliabilityManager": {
+      "enabled": true,
+      "circuitBreakerEnabled": true,
+      "circuitBreakerThreshold": 5,
+      "circuitBreakerTimeout": 60000,
+      "retryStrategyDefault": "exponential",
+      "healthCheckInterval": 30000
+    },
+    "responseStreaming": {
+      "enabled": true,
+      "chunkSize": 50,
+      "typingIndicatorEnabled": true,
+      "maxTypingDuration": 5000,
+      "optimizeReadability": true,
+      "maxResponseLength": 2000,
+      "smartTruncation": true,
+      "formatForWhatsApp": true
+    },
+    "performanceMonitor": {
+      "enabled": true,
+      "trackMetrics": true,
+      "metricsRetentionHours": 24,
+      "aggregationInterval": 60000,
+      "alertingEnabled": true,
+      "thresholds": {
+        "responseTimeMs": 5000,
+        "errorRatePercent": 5,
+        "memoryUsagePercent": 90,
+        "queueSize": 100
+      }
+    },
+    "gracefulDegradation": {
+      "enabled": true,
+      "autoDegrade": true,
+      "autoRecovery": true,
+      "recoveryCheckInterval": 300000,
+      "degradeErrorRateThreshold": 5,
+      "fallbackCacheEnabled": true,
+      "fallbackCacheTTL": 3600000
+    }
+  },
+  "monitoring": {
+    "dashboardEnabled": true,
+    "exportMetrics": true,
+    "metricsFormat": "json",
+    "alertingEnabled": true,
+    "alertChannels": ["console", "log"],
+    "performanceThresholds": {
+      "slowResponseMs": 2000,
+      "criticalResponseMs": 5000,
+      "errorRateThreshold": 5,
+      "memoryThreshold": 85
+    }
   }
 }

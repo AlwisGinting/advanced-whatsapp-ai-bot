@@ -241,7 +241,7 @@ npm run pm2:logs
 
 Setelah setup selesai:
 
-1. **Buka WhatsApp** di nomor 082166508268
+1. **Buka WhatsApp** di nomor 088807239376
 2. **Chat dari nomor lain** dengan: "Halo Jarvis"
 3. **Bot harus reply** dengan greeting message
 4. **Lanjut chat** - bot akan respons sesuai AI

@@ -1,0 +1,8 @@
+{
+  "method": "manual-whatsapp-web",
+  "phone": "6288807239376",
+  "status": "pending",
+  "linkedAt": null,
+  "expiresAt": null,
+  "sessionPath": "./auth_info_baileys"
+}

@@ -55,7 +55,7 @@ npm start
 ```
 
 ### 4. Scan QR Code (First Time Only!)
-- Buka WhatsApp di ponsel nomor 082166508268
+- Buka WhatsApp di ponsel nomor 088807239376
 - Pergi ke **Menu ⋮ > Linked Devices > Link a Device**
 - Scan QR code yang muncul di terminal
 - Selesai! Bot siap digunakan
@@ -65,7 +65,7 @@ npm start
 ## 💬 Cara Pakai
 
 ### Mulai Percakapan
-- Kirim pesan ke nomor 082166508268: "Halo Jarvis" atau "Hai Alwis"
+- Kirim pesan ke nomor 088807239376: "Halo Jarvis" atau "Hai Alwis"
 - Bot akan balas dengan salam pembuka
 
 ### Chat Biasa
