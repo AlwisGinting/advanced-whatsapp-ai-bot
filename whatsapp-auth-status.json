@@ -1,8 +1,14 @@
 {
   "method": "manual-whatsapp-web",
   "phone": "6288807239376",
-  "status": "pending",
+  "status": "awaiting-linking",
   "linkedAt": null,
   "expiresAt": null,
-  "sessionPath": "./auth_info_baileys"
+  "sessionPath": "./auth_info_baileys",
+  "linkingStartedAt": "2026-05-31T00:56:37.830Z",
+  "instructions": {
+    "website": "https://web.whatsapp.com/",
+    "phoneNumber": "+6288807239376",
+    "expectedCodeLength": 6
+  }
 }
