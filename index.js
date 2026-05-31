@@ -13,6 +13,7 @@ const RBACManager = require('./rbac-manager');
 const SecurityManager = require('./security-manager');
 const SystemCommandsHandler = require('./system-commands');
 const EnhancedHistoryManager = require('./enhanced-history');
+const AIEnhancementEngine = require('./ai-enhancement');
 
 // ========== OPTIMIZATION MODULES ==========
 const AIPerformanceOptimizer = require('./ai-optimizer');
@@ -59,6 +60,7 @@ let rbacManager;
 let securityManager;
 let enhancedHistory;
 let systemCommands;
+let aiEnhancementEngine;
 
 // ========== BOT MANAGEMENT INSTANCES ==========
 let botUpdateManager;
@@ -149,6 +151,14 @@ function initializeAllManagers() {
   securityManager = new SecurityManager(config, logger);
   enhancedHistory = new EnhancedHistoryManager(config, logger);
   systemCommands = new SystemCommandsHandler(config, logger, rbacManager);
+  aiEnhancementEngine = new AIEnhancementEngine({
+    enablePersonality: true,
+    enableContextMemory: true,
+    enableAdaptiveLearning: true,
+    enableMultiLanguage: true,
+    enableEmotionalIntelligence: true
+  });
+  logger.info('✅ AI Enhancement Engine initialized with advanced features');
 
   // Optimization managers
   aiOptimizer = new AIPerformanceOptimizer(config.optimization.aiOptimizer, logger);
@@ -341,7 +351,7 @@ Jelaskan dengan empati dan perhatian. Jawab sesuai kebutuhan, tetap ringkas dan 
 }
 
 // ============= OPTIMIZED AI RESPONSE HANDLER =============
-async function handleOptimizedMessage(message, chatId, client) {
+async function handleOptimizedMessage(message, chatId, client, enhancedSystemPrompt = null) {
   const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   const startTime = Date.now();
 
@@ -385,12 +395,19 @@ async function handleOptimizedMessage(message, chatId, client) {
     const detectedAI = isAIUser(message);
     const tone = detectedAI ? null : sentiment;
     
-    // Generate adaptive prompt
-    let systemPrompt = buildSystemPrompt(message, detectedAI, tone || { isNeutral: true, label: 'netral' });
-    
-    // Use sentiment analyzer's adaptive prompt if available
-    if (!detectedAI && sentiment) {
-      systemPrompt = sentimentAnalyzer.generateAdaptivePrompt(sentiment, intent);
+    // Use enhanced system prompt if provided by AI Enhancement Engine
+    let systemPrompt;
+    if (enhancedSystemPrompt) {
+      systemPrompt = enhancedSystemPrompt;
+      logger.debug('🧠 Using enhanced system prompt from AI Enhancement Engine', { chatId });
+    } else {
+      // Fallback to original system prompt generation
+      systemPrompt = buildSystemPrompt(message, detectedAI, tone || { isNeutral: true, label: 'netral' });
+      
+      // Use sentiment analyzer's adaptive prompt if available
+      if (!detectedAI && sentiment) {
+        systemPrompt = sentimentAnalyzer.generateAdaptivePrompt(sentiment, intent);
+      }
     }
 
     // Optimize context window
@@ -1259,6 +1276,24 @@ client.on('message', async (msg) => {
     // Add user message to enhanced history
     enhancedHistory.addMessage(chatId, 'user', body);
 
+    // Get AI enhancement context for better responses
+    const enhancementContext = await aiEnhancementEngine.processMessageWithEnhancement(
+      chatId,
+      body,
+      enhancedHistory.conversationHistory.get(chatId) || []
+    );
+    
+    // Generate enhanced system prompt
+    const enhancedSystemPrompt = aiEnhancementEngine.generateSystemPrompt(chatId, enhancementContext);
+    
+    logger.info('🧠 AI Enhancement applied', { 
+      user: chatId, 
+      language: enhancementContext.detectedLanguage,
+      sentiment: enhancementContext.sentimentAnalysis.sentiment,
+      topics: enhancementContext.topicClassification,
+      userLevel: enhancementContext.adaptiveContext.userLevel
+    });
+
     // Queue message for optimized processing if message queue is enabled
     if (config.optimization.messageQueue.enabled) {
       messageQueue.enqueue(body, 5, { chatId, msg });
@@ -1269,7 +1304,12 @@ client.on('message', async (msg) => {
     }
 
     // Get optimized AI response with all enhancements
-    const response = await handleOptimizedMessage(body, chatId, client);
+    const response = await handleOptimizedMessage(body, chatId, client, enhancedSystemPrompt);
+
+    // Update learning from this interaction
+    if (response) {
+      aiEnhancementEngine.updateFromInteraction(chatId, body, response, null);
+    }
 
     // Suppress rate limit replies
     if (response && response.trim().toLowerCase().includes('⚠️ api rate limit')) {
