@@ -1,7 +1,7 @@
 {
   "mode": "lightweight",
   "openai": {
-    "apiKey": "YOUR_OPENAI_API_KEY_HERE",
+    "apiKey": "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",
     "model": "gpt-3.5-turbo",
     "maxTokens": 100,
     "maxTokensAI": 140,
@@ -24,7 +24,7 @@
     "enableSystemCommands": true,
     "enableFileOperations": true,
     "requireConfirmationForSensitiveOps": true,
-    "authMethod": "manual-whatsapp-web",
+    "authMethod": "qr-code",
     "authStrategy": "LocalAuth"
   },
   "roles": {

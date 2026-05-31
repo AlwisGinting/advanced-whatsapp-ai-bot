@@ -1,14 +1,15 @@
 {
-  "method": "manual-whatsapp-web",
+  "method": "qr-code",
   "phone": "6288807239376",
-  "status": "awaiting-linking",
+  "status": "awaiting-scan",
   "linkedAt": null,
   "expiresAt": null,
   "sessionPath": "./auth_info_baileys",
-  "linkingStartedAt": "2026-05-31T00:56:37.830Z",
+  "linkingStartedAt": "2026-05-31T01:02:05.241Z",
   "instructions": {
     "website": "https://web.whatsapp.com/",
     "phoneNumber": "+6288807239376",
     "expectedCodeLength": 6
-  }
+  },
+  "qrGeneratedAt": "2026-05-31T01:03:00.612Z"
 }
