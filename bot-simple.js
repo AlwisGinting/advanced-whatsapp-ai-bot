@@ -25,7 +25,7 @@ const logger = new SimpleLogger();
 // ============= CONFIG =============
 const config = {
   openai: {
-    apiKey: process.env.OPENAI_API_KEY || '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',
+    apiKey: process.env.OPENAI_API_KEY || 'YOUR_OPENAI_API_KEY_HERE',
     model: 'gpt-4-turbo'
   },
   bot: {

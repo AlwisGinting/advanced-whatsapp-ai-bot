@@ -6,7 +6,7 @@ const path = require('path');
 
 // Inisialisasi OpenAI dengan API key
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: process.env.OPENAI_API_KEY || 'YOUR_OPENAI_API_KEY_HERE'
 });
 
 // Inisialisasi WhatsApp client dengan autentikasi lokal
